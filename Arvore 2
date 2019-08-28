@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Marcio Ferreira de Araujo
-struct noArvovre{
+struct noArv{
   char Raiz;
   struct noArv* esq;
   struct noArv* dir;
