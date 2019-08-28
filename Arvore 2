@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-// Marcio frerreira de araujo
+// Marcio Ferreira de Araujo
 struct noArvovre{
   char Raiz;
-  struct noArvovre* esq;
-  struct noArvovre* dir;
+  struct noArv* esq;
+  struct noArv* dir;
 };
 
-typedef struct noArvovre no;
+typedef struct noArv no;
 
 no* criar_no(char Raiz,no* esq, no* dir){
 	no* n = malloc(sizeof(no ));
@@ -17,15 +17,15 @@ no* criar_no(char Raiz,no* esq, no* dir){
 return n;
 }
 
-void emordem(no* n){
+void emord(no* n){
 	if (n !=NULL){
-	emordem(n ->esq);
+	emord(n ->esq);
 	printf("%c", n->Raiz );
-    emordem(n->dir);
+    emord(n->dir);
     }
 }
 
-void posordem(no* n){
+void posord(no* n){
 	if (n !=NULL){
 
 	posordem(n->esq);
@@ -34,7 +34,7 @@ void posordem(no* n){
     }
 }
 
-void preordem(no* n){
+void preord(no* n){
 	if (n !=NULL){
 	printf("%c", n -> Raiz );
 	preordem(n->esq);
@@ -50,29 +50,30 @@ void imprimirArv(no* n){
 }
 
 
-int buscaValor (no* n, char valor){
+int Valor (no* n, char valor){
 
 if(n == NULL){
    return 0;
    }else{
 
-    return (n->Raiz == valor) || (buscaValor(n->esq, valor)) || (buscaValor(n->dir, valor));
+    return (n->Raiz == valor) || (Valor(n->esq, valor)) || (Valor(n->dir, valor));
    }
 
 }
 
 void main(){
-	no* nono = criar_no('D',criar_no(('B'),criar_no('A',NULL,NULL),criar_no('C',NULL,NULL)), criar_no(('F'),criar_no('E',NULL,NULL),criar_no('G',NULL,NULL)));
+	no* nono = criar_no('D',criar_no(('B'),criar_no('A',NULL,NULL),
+	criar_no('C',NULL,NULL)), criar_no(('F'),criar_no('E',NULL,NULL),criar_no('G',NULL,NULL)));
 
 
     
     
     printf("\n Em Ordem: ");
-	emordem(nono);
+	emord(nono);
 	printf("\n Pos Ordem: ");
-	posordem(nono);
+	posord(nono);
 	printf("\n Pre Ordem: ");
-	preordem(nono);
-	int result = buscaValor(nono,'A');
+	preord(nono);
+	int result = Valor(nono,'A');
 	printf("\n%d", result);
 }
