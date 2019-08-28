@@ -28,8 +28,8 @@ void emord(no* n){
 void posord(no* n){
 	if (n !=NULL){
 
-	posordem(n->esq);
-	posordem(n->dir);
+	posord(n->esq);
+	posord(n->dir);
 	printf("%c", n->Raiz );
     }
 }
@@ -37,15 +37,15 @@ void posord(no* n){
 void preord(no* n){
 	if (n !=NULL){
 	printf("%c", n -> Raiz );
-	preordem(n->esq);
-	preordem(n->dir);
+	preord(n->esq);
+	preord(n->dir);
     }
 }
-void imprimirArv(no* n){
+void imprimir(no* n){
 	if (n !=NULL){
 	printf("%c", n->Raiz );
-	imprimirArv(n->esq);
-	imprimirArv(n->dir);
+	imprimir(n->esq);
+	imprimir(n->dir);
     }
 }
 
