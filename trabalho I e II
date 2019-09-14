@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+// Marcio frerreira de araujo
+
+struct No
+{
+    int numero;
+    struct No *esquerda;
+    struct No *direita;
+};
+typedef struct No No; 
+
+void criarArvore(No **pRaiz)
+{
+    *pRaiz = NULL;
+}
+
+void insercao(No **pRaiz, int numero2)
+{
+	if (*pRaiz == NULL)
+	{
+	      *pRaiz=(No *)malloc(sizeof (No));
+	      (*pRaiz)->esquerda=NULL;
+	      (*pRaiz)->direita=NULL;
+	      (*pRaiz)->numero=numero2;
+	}
+	else 
+        {
+		if (numero2 < ((*pRaiz)->numero))
+		{
+			insercao(&((*pRaiz)->esquerda), numero2);
+		}
+		else
+		{
+			insercao(&((*pRaiz)->direita), numero2);
+		}
+	}
+}
+
+//Em ordem
+void exibirEmOrdem(No *pRaiz){
+    if(pRaiz != NULL){
+        exibirEmOrdem(pRaiz->esquerda);
+        printf("\n%i", pRaiz->numero);
+        exibirEmOrdem(pRaiz->direita);
+    }
+}
+//Pré-ordem
+void exibirPreOrdem(No *pRaiz){
+    if(pRaiz != NULL){
+        printf("\n%i", pRaiz->numero);
+        exibirPreOrdem(pRaiz->esquerda);
+        exibirPreOrdem(pRaiz->direita);
+    }
+}
+//Pós-ordem
+void exibirPosOrdem(No *pRaiz){
+    if(pRaiz != NULL){
+        exibirPosOrdem(pRaiz->esquerda);
+        exibirPosOrdem(pRaiz->direita);
+        printf("\n%i", pRaiz->numero);
+    }
+}
+
+int contarNos(No *pRaiz){
+   if(pRaiz == NULL)
+        return 0;
+   else
+        return 1 + contarNos(pRaiz->esquerda) + contarNos(pRaiz->direita);
+}
+
+int contarFolhas(No *pRaiz){
+   if(pRaiz == NULL)
+        return 0;
+   if(pRaiz->esquerda == NULL && pRaiz->direita == NULL)
+        return 1;
+   return contarFolhas(pRaiz->esquerda) + contarFolhas(pRaiz->direita);
+}
+
+int maior(int a, int b){
+    if(a > b)
+        return a;
+    else
+        return b;
+}
+
+
+
+int altura(No *pRaiz){
+   if((pRaiz == NULL) || (pRaiz->esquerda == NULL && pRaiz->direita == NULL))
+       return 0;
+   else
+       return 1 + maior(altura(pRaiz->esquerda), altura(pRaiz->direita));
+}
+
+typedef int bool;
+#define false 0;
+#define true 1;
+
+bool find(int element) 
+{
+    
+    Node* temp = root;
+    int parar=0;
+
+    if(root==NULL){
+      return false;
+    }else if(temp->left== NULL && temp->right==NULL){
+      if(temp->value == element){
+        return true;
+      }else{
+        return false;
+      }
+    }else if(temp->value==element){
+      return true;
+    }else{
+    while(parar==0){
+      if(temp->value < element){
+        if(temp->left == NULL){
+          parar++;
+          	if (temp->value==element){
+           	 break;
+           	 return true;
+          }else{
+          return false;
+          }
+        }else{
+          temp=temp->left;
+          if (temp->value== element){
+            return true;
+            break;
+          }
+        }
+
+      }else if(temp->value > element){
+        if(temp->right== NULL){
+          parar++;
+          if (temp->value==element){
+            return true;
+            break;
+          }else{
+          return false;
+          }
+        }else{
+          temp=temp->right;
+          if (temp->value== element){
+            return true;
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+
