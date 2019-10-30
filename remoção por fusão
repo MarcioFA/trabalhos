@@ -1,0 +1,63 @@
+// Marcio frerreira de araujo
+#include <studio.h>
+//estrutura
+
+struct noArvore{
+
+
+//informação
+
+char info;
+
+//chamar a estrutura
+  struct noArvore* esq;
+  struct noArvore* dir;
+
+};
+
+typedef struct noArvore no;
+
+no* criar_no(char info, no* esq, no* dir){
+  //malloc alocar posição
+  no* n = malloc(sizeof(no));
+    // primeiro inf, esq, dir da estrutura
+    n-> info = info;
+    n-> esq = esq;
+    n-> dir = dir/
+    return n;
+}
+// Remoção por fusão
+*no tmp(node = no){
+if (node !=0) {
+ 	if (node->right==0) node=node->left;
+ 		else
+ 		if (node->left==0) node=node->right;
+		 else {
+ 			tmp=node->left; 
+ 			while (tmp->right != 0) tmp=tmp->right; 
+			tmp->right = node->right; 
+			tmp=node; 
+ 			node = node->left; 
+ 			}
+ delete tmp; 
+} 
+}
+
+
+
+
+// imprimir na tela
+void imprimirArvore(no* n){
+if (n != NULL){
+    printf ("%c", n-> info);
+    //chamada recurciva
+    impreimirArv(n->esq);
+    impreimirArv(n->dir);
+}
+}
+void main(){
+    //criase "A" e a perna da direita, e a esquerda e direita é nulla
+    no* nono = criar_no('A', NULL, criar_no('C',NULL,NULL));
+    imprimirArv(nono);
+
+}
